@@ -1,2 +1,2 @@
 # expressive-console-ansi
-Provides console logging with ansi support to Expressive
+Provides ansi console logging support to Expressive (with req object focus)
