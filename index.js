@@ -1,8 +1,10 @@
+'use strict'
+
 const ansi = require('ansi')
 var cursor = ansi(process.stdout)
 
 module.exports = {
-  extends: ['router', 'log', 'info', 'warn', 'error'],
+  extends: ['router', 'log', 'info', 'warn', 'error', 'debug'],
 
   router: (sender, route, context, params) => {
     // Could be used for route metrics.
@@ -22,16 +24,20 @@ module.exports = {
       .hex('#D35003').write(` ${req.url}\r\n`).reset()
   },
 
-  info: function(sender, message) {
-
+  info: function(sender, ...args) {
+    return console.info.apply(this, args)
   },
 
-  warn: function(sender, message) {
-
+  warn: function(sender, ...args) {
+    return console.warn.apply(this, args)
   },
 
-  error: function(sender, message) {
+  error: function(sender, ...args) {
+    return console.error.apply(this, args)
+  },
 
+  debug: function(sender, ...args) {
+    return console.debug.apply(this, args)
   },
 }
 
